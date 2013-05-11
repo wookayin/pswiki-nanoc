@@ -13,7 +13,7 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-compile '/stylesheet/' do
+compile '/assets/*' do
   # don’t filter or layout
 end
 
@@ -21,13 +21,18 @@ compile '*' do
   if item.binary?
     # don’t filter binary items
   else
-    filter :erb
+    if ['markdown', 'md', 'pandoc'].include?( item[:extension] )
+      filter :pandoc
+    else
+      filter :erb
+    end
     layout 'default'
   end
 end
 
-route '/stylesheet/' do
-  '/style.css'
+route '/assets/*' do
+  # serve as-is
+  item.identifier.chop + '.' + item[:extension]
 end
 
 route '*' do
