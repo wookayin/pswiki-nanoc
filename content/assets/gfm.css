@@ -1,12 +1,6 @@
 /*
 Some basic Github styles and syntax highlighting CSS via Pygments.
 */
-html {
-	font-size: 14px;
-	line-height: 1.6;
-	font-family: helvetica,arial,freesans,clean,sans-serif;
-	color: black;
-}
 h1 {
 	margin: 15px 0;
 	padding-bottom: 2px;
@@ -16,12 +10,12 @@ h1 {
 h2 {
 	margin: 20px 0 10px 0;
 	font-size: 18px;
+	border-bottom: 1px solid #DDD;
 }
 h3 {
 	margin: 20px 0 10px 0;
 	padding-bottom: 2px;
 	font-size: 14px;
-	border-bottom: 1px solid #DDD;
 }
 h4 {
 	font-size: 14px;
@@ -65,7 +59,7 @@ pre, code {
 pre {
 	background-color: #F8F8F8;
 	border: 1px solid #CCC;
-	font-size: 13px;
+	font-size: 14px;
 	line-height: 19px;
 	overflow: auto;
 	padding: 6px 10px;
@@ -79,7 +73,6 @@ code {
 	border: 1px solid #CCC;
 	background-color: #F8F8F8;
 	border-radius: 3px;
-	font-size: 12px !important;
 }
 pre > code {
     margin: 0px;
@@ -108,66 +101,26 @@ table tr th, table tr td {
 	padding: 6px 13px;
 }
 table tbody tr:nth-child(2n-1) {
-        background-color: #F8F8F8;
+    background-color: #F8F8F8;
 }
 
-code .c{color:#998;font-style:italic;}
-code .err{color:#a61717;background-color:#e3d2d2;}
-code .k{font-weight:bold;}
-code .o{font-weight:bold;}
-code .cm{color:#998;font-style:italic;}
-code .cp{color:#999;font-weight:bold;}
-code .c1{color:#998;font-style:italic;}
-code .cs{color:#999;font-weight:bold;font-style:italic;}
-code .gd{color:#000;background-color:#fdd;}
-code .gd .x{color:#000;background-color:#faa;}
-code .ge{font-style:italic;}
-code .gr{color:#a00;}
-code .gh{color:#999;}
-code .gi{color:#000;background-color:#dfd;}
-code .gi .x{color:#000;background-color:#afa;}
-code .go{color:#888;}
-code .gp{color:#555;}
-code .gs{font-weight:bold;}
-code .gu{color:#800080;font-weight:bold;}
-code .gt{color:#a00;}
-code .kc{font-weight:bold;}
-code .kd{font-weight:bold;}
-code .kn{font-weight:bold;}
-code .kp{font-weight:bold;}
-code .kr{font-weight:bold;}
-code .kt{color:#458;font-weight:bold;}
-code .m{color:#099;}
-code .s{color:#d14;}
-code .na{color:#008080;}
-code .nb{color:#0086B3;}
-code .nc{color:#458;font-weight:bold;}
-code .no{color:#008080;}
-code .ni{color:#800080;}
-code .ne{color:#900;font-weight:bold;}
-code .nf{color:#900;font-weight:bold;}
-code .nn{color:#555;}
-code .nt{color:#000080;}
-code .nv{color:#008080;}
-code .ow{font-weight:bold;}
-code .w{color:#bbb;}
-code .mf{color:#099;}
-code .mh{color:#099;}
-code .mi{color:#099;}
-code .mo{color:#099;}
-code .sb{color:#d14;}
-code .sc{color:#d14;}
-code .sd{color:#d14;}
-code .s2{color:#d14;}
-code .se{color:#d14;}
-code .sh{color:#d14;}
-code .si{color:#d14;}
-code .sx{color:#d14;}
-code .sr{color:#009926;}
-code .s1{color:#d14;}
-code .ss{color:#990073;}
-code .bp{color:#999;}
-code .vc{color:#008080;}
-code .vg{color:#008080;}
-code .vi{color:#008080;}
-code .il{color:#099;}
+
+/* from pandoc */
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode pre
+   { margin: 0; padding: 0; border: 0; vertical-align: baseline; border: none; }
+td.lineNumbers { border-right: 1px solid #AAAAAA; text-align: right; color: #AAAAAA; padding-right: 5px; padding-left: 5px; }
+td.sourceCode { padding-left: 5px; }
+pre.sourceCode { }
+code.sourceCode span.kw { color: #007020; font-weight: bold; }
+code.sourceCode span.dt { color: #902000; }
+code.sourceCode span.dv { color: #40a070; }
+code.sourceCode span.bn { color: #40a070; }
+code.sourceCode span.fl { color: #40a070; }
+code.sourceCode span.ch { color: #4070a0; }
+code.sourceCode span.st { color: #4070a0; }
+code.sourceCode span.co { color: #60a0b0; font-style: italic; }
+code.sourceCode span.ot { color: #007020; }
+code.sourceCode span.al { color: red; font-weight: bold; }
+code.sourceCode span.fu { color: #06287e; }
+code.sourceCode span.re { }
+code.sourceCode span.er { color: red; font-weight: bold; }

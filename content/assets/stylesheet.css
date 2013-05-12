@@ -1,4 +1,4 @@
-* {
+html {
   margin: 0;
   padding: 0;
 
@@ -24,42 +24,34 @@ a:hover {
 
 #main {
   position: absolute;
+  font-size: 16px;
+  line-height: 1.7;
 
   top: 40px;
   left: 280px;
 
-  width: 500px;
+  width: 700px;
 }
 
 #main h1 {
   font-size: 40px;
   font-weight: normal;
-
   line-height: 40px;
 
   letter-spacing: -1px;
 }
 
+#main h2 {
+  font-size: 24px;
+  font-weight: normal;
+}
+
+#main h3 {
+  font-size: 20px;
+}
+
 #main p {
   margin: 20px 0;
-
-  font-size: 15px;
-
-  line-height: 20px;
-}
-
-#main ul, #main ol {
-  margin: 20px;
-}
-
-#main li {
-  font-size: 15px;
-
-  line-height: 20px;
-}
-
-#main ul li {
-  list-style-type: square;
 }
 
 #sidebar {
@@ -70,6 +62,7 @@ a:hover {
   width: 200px;
 
   padding: 20px 20px 0 0;
+  min-height: 500px;
 
   border-right: 1px solid #ccc;
 
