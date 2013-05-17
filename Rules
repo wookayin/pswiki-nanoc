@@ -13,6 +13,25 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+require 'set'
+
+# index all tags
+preprocess do
+  tags = Set.new
+  items.each do |item|
+    if item[:tags]
+      item[:tags].each { |t| tags.add(t) }
+    end
+  end
+  tags.each do |tag|
+    items << Nanoc::Item.new(tag, {:tag=>tag}, "/tags/#{tag}/")
+  end
+end
+
+compile '/tags/*' do
+  layout 'tag'
+end
+
 compile '/assets/*' do
   # don’t filter or layout
 end
