@@ -40,7 +40,7 @@ compile '*' do
   if item.binary?
     # don’t filter binary items
   else
-    if ['markdown', 'md', 'pandoc'].include?( item[:extension] )
+    if ['markdown', 'md', 'pandoc', 'pdoc'].include?( item[:extension] )
       filter :pandoc
     else
       filter :erb
