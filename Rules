@@ -29,15 +29,17 @@ preprocess do
     items << tag_item
     tag_items << tag_item
   end
-  items << Nanoc::Item.new("", {:tags => tag_items}, "/tags/")
+  items << Nanoc::Item.new("", {:tag_items => tag_items}, "/tags/")
 end
 
 compile '/tags/' do
   layout 'tagcloud'
+  layout 'default'
 end
 
 compile '/tags/*' do
   layout 'tag'
+  layout 'default'
 end
 
 compile '/assets/*' do
@@ -53,6 +55,7 @@ compile '*' do
     else
       filter :erb
     end
+    layout 'page'
     layout 'default'
   end
 end

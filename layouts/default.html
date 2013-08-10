@@ -14,12 +14,15 @@
   </head>
   <body>
     <div id="main">
-      <%= yield %>
-
-      <p>Tags: <%= tags_for(@item, :base_url => "/tags/") %></p>
+      <%= content_for(@item, :contents) || yield %>
     </div>
     <div id="sidebar">
       <h2>Menu</h2>
+      <%= content_for(@item, :menu) %>
+      <ul>
+        <li><a href="/">Main Page</a></li>
+        <li><a href="/tags/">Tag Cloud</a></li>
+      </ul>
     </div>
   </body>
 </html>
