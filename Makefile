@@ -1,8 +1,8 @@
-.PHONY: all
+.PHONY: all compile
 
 all: compile
 
 clean:
-	rm -rf output/
+	rm -rf output/ *.log
 compile:
 	nanoc compile
