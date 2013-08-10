@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>solve.wook.kr - tagged with '<%= @item[:tag] %>'</title>
+    <link rel="stylesheet" href="/assets/gfm.css">
+    <link rel="stylesheet" href="/assets/stylesheet.css">
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <!-- you don't need to keep this, but it's cool for stats! -->
+    <meta name="generator" content="nanoc <%= Nanoc::VERSION %>">
+
+  </head>
+  <body>
+    <div id="main">
+      <% tags = @item[:tags] %>
+      <h1>Tag Cloud (<%=tags.length%>)</h1>
+      <ul>
+        <% tags.each do |item| %>
+          <li><%= link_to(item[:tag], item) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div id="sidebar">
+      <h2>Menu</h2>
+    </div>
+  </body>
+</html>
+<%# vim: set ft=eruby: %>

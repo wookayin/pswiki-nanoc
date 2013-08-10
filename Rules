@@ -23,9 +23,17 @@ preprocess do
       item[:tags].each { |t| tags.add(t) }
     end
   end
+  tag_items = Array.new
   tags.each do |tag|
-    items << Nanoc::Item.new(tag, {:tag=>tag}, "/tags/#{tag}/")
+    tag_item = Nanoc::Item.new(tag, {:tag => tag}, "/tags/#{tag}/")
+    items << tag_item
+    tag_items << tag_item
   end
+  items << Nanoc::Item.new("", {:tags => tag_items}, "/tags/")
+end
+
+compile '/tags/' do
+  layout 'tagcloud'
 end
 
 compile '/tags/*' do
