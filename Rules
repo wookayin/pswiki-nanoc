@@ -41,7 +41,7 @@ compile '*' do
     # don’t filter binary items
   else
     if ['markdown', 'md', 'pandoc', 'pdoc'].include?( item[:extension] )
-      filter :pandoc
+      filter :pandoc, :mathjax => true
     else
       filter :erb
     end
