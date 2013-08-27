@@ -10,3 +10,12 @@ except for the core contents themselves.
 * Markdown/Pandoc-based writing
 * LaTeX support with MathJax
 * Simple tagging on items
+* Bootstrap contents with template
+
+## Scripts
+
+### Bootstrap contents with template
+
+Bootstraps Topcoder SRM contents:
+
+`script/bootstrap-srm SRM-xxx 250:EasyProblemName 500:MediumProblemName 1000:HardProblemName`

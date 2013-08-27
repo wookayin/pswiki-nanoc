@@ -1,0 +1,81 @@
+#!/usr/bin/env ruby
+
+# Usage (example):
+# script/bootstrap-srm SRM-589 250:GooseTattarrattatDiv1 450:GearsDiv1 900:FlippingBitsDiv1
+
+round = ARGV[0]
+problems_arg = ARGV[1..-1]
+
+
+if not Dir.exists?('./content')
+  puts "ERROR: directory 'content/' does not exist -- go to the root of the project"
+  exit 1
+end
+
+problems = Hash.new
+problems_arg.each do |problem|
+  pts, name = problem.split(':')
+  next if name.nil? or name.empty?
+  next if /^\d+$/.match(pts) == nil
+  problems[pts] = name
+end
+
+require 'fileutils'
+FileUtils.mkdir_p "./content/tc/#{round}"
+
+def prompt(*args)
+  print(*args)
+  STDIN.gets.chomp
+end
+
+def generate(filename)
+  if File.exists?(filename)
+    confirm = prompt "File #{filename} already exists. overwrite? (y/n) "
+    return if confirm != 'y'
+  end
+
+  body = yield
+  puts "\t created #{filename}"
+  File.open(filename, 'w') do |f|
+    f.write(body)
+  end
+
+end
+
+# The contest page
+generate "./content/tc/#{round}/index.md" do
+  s = """---
+title: #{round.gsub('-', ' ')}
+tags:
+- _draft
+---
+
+# #{round.gsub('-', ' ')}
+
+"""
+  problems.each do |pts, name|
+    s << "* #{pts} : [#{name}](#{name})\n"
+  end
+  s
+end
+
+# Each Problem page
+problems.each do |pts, name|
+  generate("./content/tc/#{round}/#{name}.pandoc") do
+    """---
+tags:
+- _draft
+---
+
+# #{name}
+
+[#{round.gsub('-', ' ')}](..) Div1 #{pts}. (? / #{pts})
+
+## Problem
+
+## Solution
+
+"""
+  end
+end
+
