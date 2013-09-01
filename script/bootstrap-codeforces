@@ -1,0 +1,81 @@
+#!/usr/bin/env ruby
+
+# Usage (example):
+# script/bootstrap-codeforces CF-198 A:"Tourist Problem" B:"Bubble Sort Graph" C:"Iahub and Permutations" D:"Iahub and Xors" E:"Candies Game"
+
+round = ARGV[0]
+problems_arg = ARGV[1..-1]
+
+
+if not Dir.exists?('./content')
+  puts "ERROR: directory 'content/' does not exist -- go to the root of the project"
+  exit 1
+end
+
+problems = Hash.new
+problems_arg.each do |problem|
+  pid, name = problem.split(':')
+  next if name.nil? or name.empty?
+  next if /^[A-Z]+$/.match(pid) == nil
+  problems[pid] = name
+end
+
+require 'fileutils'
+FileUtils.mkdir_p "./content/cf/#{round}"
+
+def prompt(*args)
+  print(*args)
+  STDIN.gets.chomp
+end
+
+def generate(filename)
+  if File.exists?(filename)
+    confirm = prompt "File #{filename} already exists. overwrite? (y/n) "
+    return if confirm != 'y'
+  end
+
+  body = yield
+  puts "\t created #{filename}"
+  File.open(filename, 'w') do |f|
+    f.write(body)
+  end
+
+end
+
+# The contest page
+generate "./content/cf/#{round}/index.md" do
+  s = """---
+title: #{round.gsub('-', ' ')}
+tags:
+- _draft
+---
+
+# #{round.gsub('-', ' ')}
+
+"""
+  problems.each do |pid, name|
+    s << "* #{pid} : [#{name}](#{pid})\n"
+  end
+  s
+end
+
+# Each Problem page
+problems.each do |pid, name|
+  generate("./content/cf/#{round}/#{pid}.pandoc") do
+    """---
+tags:
+- _draft
+---
+
+# #{name}
+
+[#{round.gsub('-', ' ')}](..) Div1 Problem #{pid}.
+
+## Problem
+
+## Solution
+
+"""
+  end
+end
+
