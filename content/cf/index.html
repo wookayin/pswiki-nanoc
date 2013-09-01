@@ -1,0 +1,12 @@
+<h1>Codeforces</h1>
+<%# vim: set ft=eruby: %>
+
+<%
+  # select all items with '/cf/foo-bar/' pattern
+  tc_items = @items.select { |item| /^\/cf\/[^\/]+\/$/.match(item.path) }
+%>
+<ul>
+  <% tc_items.each do |item| %>
+    <li><%= link_to(item[:title] || item.path, item) %></li>
+  <% end %>
+</ul>

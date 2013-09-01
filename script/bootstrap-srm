@@ -45,6 +45,7 @@ end
 # The contest page
 generate "./content/tc/#{round}/index.md" do
   s = """---
+kind: match
 title: #{round.gsub('-', ' ')}
 tags:
 - _draft
@@ -63,11 +64,13 @@ end
 problems.each do |pts, name|
   generate("./content/tc/#{round}/#{name}.pandoc") do
     """---
+kind: article
+title: #{name}
 tags:
 - _draft
 ---
 
-# #{name}
+# <%=@item[:title]%>
 
 [#{round.gsub('-', ' ')}](..) Div1 #{pts}. (? / #{pts})
 

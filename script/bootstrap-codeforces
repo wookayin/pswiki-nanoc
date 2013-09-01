@@ -46,6 +46,7 @@ end
 generate "./content/cf/#{round}/index.md" do
   s = """---
 title: #{round.gsub('-', ' ')}
+kind: match
 tags:
 - _draft
 ---
@@ -63,11 +64,13 @@ end
 problems.each do |pid, name|
   generate("./content/cf/#{round}/#{pid}.pandoc") do
     """---
+kind: article
+title: #{name}
 tags:
 - _draft
 ---
 
-# #{name}
+# <%=@item[:title]%>
 
 [#{round.gsub('-', ' ')}](..) Div1 Problem #{pid}.
 
